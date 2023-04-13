@@ -1,16 +1,18 @@
 public class Q04 {
-    public static int binarySearch(int[] arr, int low, int high, int key) {
-        if (low > high) {
-            return -1;
+    //binary search without recursion
+    public static int binarySearch(int[] arr, int l, int r, int key) {
+        while (l <= r) {
+            int mid = l + (r - l) / 2;
+            if (arr[mid] == key) {
+                return mid;
+            }
+            if (arr[mid] > key) {
+                r = mid - 1;
+            } else {
+                l = mid + 1;
+            }
         }
-        int mid = (low + high) / 2;
-        if (key == arr[mid]) {
-            return mid;
-        }
-        if (key < arr[mid]) {
-            return binarySearch(arr, low, mid - 1, key);
-        }
-        return binarySearch(arr, mid + 1, high, key);
+        return -1;
     }
     //TC = O(log n)
     //SC = O(log n)
